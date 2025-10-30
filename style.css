@@ -1,18 +1,18 @@
 body {
   font-family: "Comic Sans MS", sans-serif;
   background: #42c0e7;
-  color: #333;
+  color: #0008ff;
   text-align: center;
   padding: 20px;
 }
 
 header h1 span {
-  color: #8b0000;
+  color: #932caf;
   font-size: 2.5em;
 }
 
 h2 {
-  color: #4b2e2e;
+  color: #20eef5;
   margin-top: 30px;
 }
 
