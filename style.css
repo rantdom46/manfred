@@ -1,6 +1,6 @@
 body {
   font-family: "Comic Sans MS", sans-serif;
-  background: #f2d16b;
+  background: #42c0e7;
   color: #333;
   text-align: center;
   padding: 20px;
@@ -22,7 +22,7 @@ ul {
 }
 
 ul li {
-  background: #ffe680;
+  background: #684ecf;
   margin: 10px auto;
   padding: 10px;
   width: 250px;
