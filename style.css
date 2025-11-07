@@ -1,27 +1,50 @@
-/* Body & Fonts */
-body {
+/* Fullscreen & Fonts */
+html, body {
+  height: 100%;
+  margin: 0;
+  overflow: hidden; /* kein Scrollen */
   font-family: "Comic Sans MS", sans-serif;
-  background: #f2d16b; /* Gelb */
-  color: #932caf;       /* Pink/Purple Text */
+  background: #f2d16b;
+  color: #932caf;
   text-align: center;
-  padding: 20px 0;
-  margin: 0;            /* kein Margin auf Body, Content wird in Wrapper verschoben */
 }
 
-/* Content Wrapper für Margin links/rechts */
+/* Flexbox Layout */
+.page-wrapper {
+  display: flex;
+  flex-direction: column;
+  height: 100vh; /* Fullscreen */
+}
+
+/* Top & Bottom Images */
+.top-image img,
+.bottom-image img {
+  width: 100%;
+  height: 15vh;       /* 15% des Viewports */
+  object-fit: cover;
+  position: relative;
+  z-index: 1000;      /* über Side-Banner */
+}
+
+/* Content mittig */
 .content-wrapper {
-  margin: 0 110px;      /* Platz für Side-Banner */
+  flex: 1;             /* füllt Rest des Viewports */
+  margin: 0 110px;     /* Platz für Side-Banner */
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 /* Header */
 header h1 span {
-  color: #ff4500;       /* Orange */
+  color: #ff4500;      /* Orange */
   font-size: 2.5em;
 }
 
 h2 {
-  color: #ff69b4;       /* Pink */
-  margin-top: 30px;
+  color: #ff69b4;      /* Pink */
+  margin-top: 10px;
 }
 
 /* Lists */
@@ -33,9 +56,9 @@ ul {
 ul li {
   background: #fff1b0;  /* helleres Gelb */
   color: #932caf;       /* Pink Text */
-  margin: 10px auto;
-  padding: 10px;
-  width: 250px;
+  margin: 5px auto;
+  padding: 8px;
+  width: 220px;
   border-radius: 10px;
   font-weight: bold;
   transition: background 0.3s, color 0.3s;
@@ -49,40 +72,19 @@ ul li:hover {
 
 /* Footer */
 footer {
-  margin-top: 50px;
   font-size: 0.9em;
-}
-
-/* Top & Bottom Images */
-.top-image img,
-.bottom-image img {
-  width: 100%;
-  max-height: 200px;
-  object-fit: cover;
-  position: relative;
-  z-index: 1000; /* über Side-Bannern */
-}
-
-.bottom-image img {
-  margin-top: 20px;
 }
 
 /* Side Banners */
 .side-banner {
-  position: fixed;   /* bleibt immer sichtbar beim Scrollen */
-  top: 0;
-  bottom: 0;
+  position: fixed;   /* bleibt immer sichtbar */
+  top: 0; bottom: 0;
   width: 100px;
   z-index: 500;      /* unter Top/Bottom Banner */
 }
 
-.side-banner.left {
-  left: 0;
-}
-
-.side-banner.right {
-  right: 0;
-}
+.side-banner.left { left: 0; }
+.side-banner.right { right: 0; }
 
 .side-banner img {
   width: 100%;
