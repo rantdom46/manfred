@@ -1,58 +1,35 @@
-/* Grundstruktur */
+/* Body & Hintergrundbild */
 html, body {
   margin: 0;
   height: 100%;
   font-family: "Comic Sans MS", sans-serif;
-  background: #f2d16b; /* Gelb */
-  color: #932caf;       /* Pink/Purple Text */
+  color: #932caf;
   text-align: center;
-  overflow: hidden;     /* Scroll nur im Content */
+  background: url('Trollface.png') no-repeat center center fixed;
+  background-size: cover;
 }
 
-/* Side Banners */
-.side-banner {
+/* Top Banner */
+.top-image {
   position: fixed;
   top: 0;
-  bottom: 0;
-  width: 100px;
-  z-index: 500;
-}
-.side-banner.left { left: 0; }
-.side-banner.right { right: 0; }
-.side-banner img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-/* Top & Bottom Banners */
-.top-image, .bottom-image {
-  position: fixed;
-  left: 100px;   /* Platz für Side-Banner */
-  right: 100px;
+  left: 0;
+  right: 0;
   height: 100px;
-  z-index: 1000; /* über Side-Banner */
+  z-index: 1000;
 }
-.top-image { top: 0; }
-.bottom-image { bottom: 0; }
-.top-image img, .bottom-image img {
+.top-image img {
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-/* Content Wrapper */
+/* Content */
 .content-wrapper {
-  position: absolute;
-  top: 100px;       /* unter Top-Banner */
-  bottom: 100px;    /* über Bottom-Banner */
-  left: 110px;      /* neben Side-Banner */
-  right: 110px;
-  overflow-y: auto; /* scroll falls Inhalt größer */
+  margin: 120px 20px 20px 20px; /* oben Platz für Top-Banner */
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
 }
 
 /* Header */
@@ -62,8 +39,8 @@ h2 { color: #ff69b4; margin-top: 10px; }
 /* Listen */
 ul { list-style: none; padding: 0; }
 ul li {
-  background: #fff1b0;  /* helles Gelb */
-  color: #932caf;       /* Pink Text */
+  background: rgba(255, 241, 176, 0.8);  /* halbtransparentes Gelb */
+  color: #932caf;
   margin: 5px auto;
   padding: 8px;
   width: 220px;
