@@ -1,3 +1,53 @@
+/* Body & Fonts */
+body {
+  font-family: "Comic Sans MS", sans-serif;
+  background: #f2d16b; /* Gelb */
+  color: #932caf;       /* Pink/Purple Text */
+  text-align: center;
+  padding: 20px;
+  margin: 0 110px;      /* Platz für Side-Banner */
+}
+
+/* Header */
+header h1 span {
+  color: #ff4500;       /* Orange */
+  font-size: 2.5em;
+}
+
+h2 {
+  color: #ff69b4;       /* Pink */
+  margin-top: 30px;
+}
+
+/* Lists */
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  background: #fff1b0;  /* helleres Gelb für Lesbarkeit */
+  color: #932caf;       /* Pink Text */
+  margin: 10px auto;
+  padding: 10px;
+  width: 250px;
+  border-radius: 10px;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
+}
+
+ul li:hover {
+  background-color: #ff8c42; /* Orange Hover */
+  color: #fff;               /* Weißer Text */
+  cursor: pointer;
+}
+
+/* Footer */
+footer {
+  margin-top: 50px;
+  font-size: 0.9em;
+}
+
 /* Top & Bottom Images */
 .top-image img,
 .bottom-image img {
@@ -14,9 +64,9 @@
 /* Side Banners */
 .side-banner {
   position: fixed;   /* bleibt immer sichtbar */
-  top: 0;            /* oben anfangen */
-  bottom: 0;         /* bis ganz unten */
-  width: 100px;      /* Breite der Banner */
+  top: 0;
+  bottom: 0;
+  width: 100px;      /* Breite der vertikalen Banner */
   z-index: 1000;     /* über allem Content */
 }
 
@@ -32,9 +82,4 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-}
-
-/* Body-Margin, damit Text nicht unter die Side-Banner läuft */
-body {
-  margin: 0 110px; /* Platz für Side-Banner + etwas Abstand */
 }
