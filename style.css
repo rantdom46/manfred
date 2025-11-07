@@ -1,45 +1,40 @@
+/* Top & Bottom Images */
+.top-image img,
+.bottom-image img {
+  width: 100%;
+  max-height: 200px;
+  object-fit: cover;
+  margin-bottom: 20px;
+}
+
+.bottom-image img {
+  margin-top: 20px;
+}
+
+/* Side Banners */
+.side-banner {
+  position: fixed;   /* bleibt immer sichtbar */
+  top: 0;            /* oben anfangen */
+  bottom: 0;         /* bis ganz unten */
+  width: 100px;      /* Breite der Banner */
+  z-index: 1000;     /* über allem Content */
+}
+
+.side-banner.left {
+  left: 0;           /* links */
+}
+
+.side-banner.right {
+  right: 0;          /* rechts */
+}
+
+.side-banner img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Body-Margin, damit Text nicht unter die Side-Banner läuft */
 body {
-  font-family: "Comic Sans MS", sans-serif;
-  background: #f2d16b; /* yellow */
-  color: #932caf;       /* pink/purple text */
-  text-align: center;
-  padding: 20px;
-}
-
-header h1 span {
-  color: #ff4500;       /* orange */
-  font-size: 2.5em;
-  /* no blinking */
-}
-
-h2 {
-  color: #ff69b4;       /* bright pink */
-  margin-top: 30px;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-}
-
-ul li {
-  background: #fff1b0;  /* lighter yellow for readability */
-  color: #932caf;       /* pink text */
-  margin: 10px auto;
-  padding: 10px;
-  width: 250px;
-  border-radius: 10px;
-  font-weight: bold;
-  transition: background 0.3s, color 0.3s;
-}
-
-ul li:hover {
-  background-color: #ff8c42; /* orange on hover */
-  color: #fff;               /* text turns white for contrast */
-  cursor: pointer;
-}
-
-footer {
-  margin-top: 50px;
-  font-size: 0.9em;
+  margin: 0 110px; /* Platz für Side-Banner + etwas Abstand */
 }
