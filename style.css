@@ -52,3 +52,27 @@ ul li:hover { background-color: #ff8c42; color: #fff; cursor: pointer; }
 
 /* Footer */
 footer { font-size: 0.9em; margin-top: 20px; }
+/* Mobile-Optimierung */
+@media (max-width: 600px) {
+  .top-image {
+    height: 60px; /* kleiner Top-Banner */
+  }
+
+  .content-wrapper {
+    margin: 70px 10px 10px 10px; /* oben Platz anpassen */
+  }
+
+  ul li {
+    width: 90%;       /* passt sich an Bildschirmbreite an */
+    padding: 10px;
+    font-size: 1em;
+  }
+
+  header h1 span {
+    font-size: 1.8em; /* kleinere Überschrift */
+  }
+
+  h2 {
+    font-size: 1.2em; /* kleinere Unterüberschrift */
+  }
+}
