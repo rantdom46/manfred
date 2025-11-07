@@ -1,37 +1,45 @@
 body {
   font-family: "Comic Sans MS", sans-serif;
-  background: #f2d16b; /* Gelb */
-  color: #ff69b4;       /* Pink für Text */
+  background: #f2d16b; /* yellow */
+  color: #932caf;       /* pink/purple text */
   text-align: center;
   padding: 20px;
 }
 
 header h1 span {
-  color: #ff4500;       /* knalliges Orange */
+  color: #ff4500;       /* orange */
   font-size: 2.5em;
-  animation: blink 1s infinite;
+  /* no blinking */
 }
 
 h2 {
-  color: #ff69b4;       /* Pink */
+  color: #ff69b4;       /* bright pink */
   margin-top: 30px;
 }
 
+ul {
+  list-style: none;
+  padding: 0;
+}
+
 ul li {
-  background: #ff8c42;  /* Orange */
+  background: #fff1b0;  /* lighter yellow for readability */
+  color: #932caf;       /* pink text */
   margin: 10px auto;
   padding: 10px;
   width: 250px;
   border-radius: 10px;
+  font-weight: bold;
+  transition: background 0.3s, color 0.3s;
 }
 
 ul li:hover {
-  background-color: #ff69b4; /* Pink beim Hover */
-  color: #fff;
+  background-color: #ff8c42; /* orange on hover */
+  color: #fff;               /* text turns white for contrast */
   cursor: pointer;
 }
 
-@keyframes blink {
-  0%, 50%, 100% { opacity: 1; }
-  25%, 75% { opacity: 0; }
+footer {
+  margin-top: 50px;
+  font-size: 0.9em;
 }
