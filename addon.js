@@ -6,6 +6,7 @@ function resetActive() {
   listItems.forEach(li => li.classList.remove("active"));
 }
 
+// Hover + Click
 listItems.forEach(item => {
   const beerId = item.dataset.beer;
   const targetImg = document.getElementById(beerId);
@@ -16,9 +17,11 @@ listItems.forEach(item => {
     targetImg.classList.add("active");
     item.classList.add("active");
   });
-  item.addEventListener("mouseleave", () => { resetActive(); });
+  item.addEventListener("mouseleave", () => {
+    resetActive();
+  });
 
-  // Click / tap (mobile)
+  // Click / Tap (mobile)
   item.addEventListener("click", () => {
     if(targetImg.classList.contains("active")) {
       targetImg.classList.remove("active");
