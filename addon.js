@@ -1,3 +1,4 @@
+// --- Bier Hover & Click ---
 const listItems = document.querySelectorAll("ul li");
 const beerImages = document.querySelectorAll(".beer-images img");
 
@@ -6,24 +7,21 @@ function resetActive() {
   listItems.forEach(li => li.classList.remove("active"));
 }
 
-// Hover + Click
 listItems.forEach(item => {
   const beerId = item.dataset.beer;
   const targetImg = document.getElementById(beerId);
 
-  // Hover (desktop)
+  // Hover (Desktop)
   item.addEventListener("mouseenter", () => {
     resetActive();
     targetImg.classList.add("active");
     item.classList.add("active");
   });
-  item.addEventListener("mouseleave", () => {
-    resetActive();
-  });
+  item.addEventListener("mouseleave", () => resetActive());
 
-  // Click / Tap (mobile)
+  // Click / Tap (Mobile)
   item.addEventListener("click", () => {
-    if(targetImg.classList.contains("active")) {
+    if(targetImg.classList.contains("active")){
       targetImg.classList.remove("active");
       item.classList.remove("active");
     } else {
@@ -32,4 +30,19 @@ listItems.forEach(item => {
       item.classList.add("active");
     }
   });
+});
+
+// --- Secret Easter Egg ---
+const footer = document.getElementById("footer");
+const secretImg = document.getElementById("secret");
+const secretPass = "hopfenpower"; // Passwort
+
+footer.addEventListener("click", () => {
+  const input = prompt("Gib das geheime Bierwort ein:");
+  if(input?.toLowerCase() === secretPass){
+    secretImg.classList.add("show");
+    setTimeout(() => secretImg.classList.remove("show"), 5000); // 5 Sekunden sichtbar
+  } else {
+    alert("Falsches Bierwort 😅");
+  }
 });
