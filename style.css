@@ -10,6 +10,20 @@ html, body {
     url('background-wb.png') no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
+  transition: background-color 0.2s;
+}
+
+/* Disco Effekt */
+@keyframes disco {
+  0% { background-color: #ff0000; }
+  20% { background-color: #00ff00; }
+  40% { background-color: #0000ff; }
+  60% { background-color: #ffff00; }
+  80% { background-color: #ff00ff; }
+  100% { background-color: #00ffff; }
+}
+.disco {
+  animation: disco 0.2s infinite;
 }
 
 /* Content Wrapper */
@@ -38,7 +52,7 @@ ul {
 }
 
 ul li {
-  background: rgba(255, 241, 176, 0.8); /* halbtransparentes Gelb */
+  background: rgba(255, 241, 176, 0.8);
   color: #932caf;
   margin: 5px auto;
   padding: 8px;

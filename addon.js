@@ -32,16 +32,24 @@ listItems.forEach(item => {
   });
 });
 
-// --- Secret Easter Egg ---
+// --- Secret Easter Egg + Disco Effekt ---
 const footer = document.getElementById("footer");
 const secretImg = document.getElementById("secret");
-const secretPass = "Danfred"; // Passwort
+const secretPass = "danfred"; // Passwort
+const body = document.body;
 
 footer.addEventListener("click", () => {
   const input = prompt("Gib das geheime Bierwort ein (wie heisst Manfred's Bruder??):");
   if(input?.toLowerCase() === secretPass){
+    // Secret Image anzeigen
     secretImg.classList.add("show");
-    setTimeout(() => secretImg.classList.remove("show"), 5000); // 5 Sekunden sichtbar
+    // Disco Effekt starten
+    body.classList.add("disco");
+
+    setTimeout(() => {
+      secretImg.classList.remove("show");
+      body.classList.remove("disco");
+    }, 5000);
   } else {
     alert("Falsches Bierwort");
   }
