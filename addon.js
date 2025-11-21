@@ -35,14 +35,14 @@ listItems.forEach(item => {
 // --- Secret Easter Egg ---
 const footer = document.getElementById("footer");
 const secretImg = document.getElementById("secret");
-const secretPass = "hopfenpower"; // Passwort
+const secretPass = "Danfred"; // Passwort
 
 footer.addEventListener("click", () => {
-  const input = prompt("Gib das geheime Bierwort ein:");
+  const input = prompt("Gib das geheime Bierwort ein (wie heisst Manfred's Bruder??):");
   if(input?.toLowerCase() === secretPass){
     secretImg.classList.add("show");
     setTimeout(() => secretImg.classList.remove("show"), 5000); // 5 Sekunden sichtbar
   } else {
-    alert("Falsches Bierwort 😅");
+    alert("Falsches Bierwort");
   }
 });
