@@ -27,7 +27,7 @@ html, body {
 
 /* DISCO LEVEL 3 langsamer Flicker + leicht transparent */
 #disco-overlay.active {
-  opacity: 0.6;
+  opacity: 0.4;
   animation:
     discoColors 0.5s infinite,
     discoFlash 0.5s infinite alternate,
