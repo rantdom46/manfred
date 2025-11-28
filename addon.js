@@ -32,19 +32,23 @@ listItems.forEach(item => {
   });
 });
 
-// --- Secret Easter Egg + Disco Effekt ---
+// --- Secret Easter Egg + Level 3 Disco ---
 const footer = document.getElementById("footer");
 const secretImg = document.getElementById("secret");
 const disco = document.getElementById("disco-overlay");
 const secretPass = "danfred";
 
 footer.addEventListener("click", () => {
-  const input = prompt("Gib das geheime Bierwort ein (wie heisst Manfred's Bruder??):");
+  const input = prompt("Gib das geheime Bierwort ein (wie heisst Manfred's Bruder??) - [ACHTUNG EPILEPSIE]:");
 
   if (input?.toLowerCase() === secretPass) {
+    // Secret Image anzeigen
     secretImg.classList.add("show");
+
+    // Level 3 Disco aktivieren
     disco.classList.add("active");
 
+    // Entfernen nach 5 Sekunden
     setTimeout(() => {
       secretImg.classList.remove("show");
       disco.classList.remove("active");
