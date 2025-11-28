@@ -5,12 +5,18 @@ html, body {
   font-family: "Comic Sans MS", sans-serif;
   color: #fe5c21;
   text-align: center;
-  background: 
+  background:
     linear-gradient(to bottom, rgba(147, 44, 175, 0.65), rgba(255, 140, 66, 0.6)),
     url('background-wb.png') no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
-  transition: background-color 0.2s;
+  transition: background 0.2s;
+}
+
+/* DISCO OVERRIDE – entfernt Bild + Gradient */
+body.disco {
+  background: none !important;
+  animation: disco 0.2s infinite;
 }
 
 /* Disco Effekt */
@@ -21,9 +27,6 @@ html, body {
   60% { background-color: #ffff00; }
   80% { background-color: #ff00ff; }
   100% { background-color: #00ffff; }
-}
-.disco {
-  animation: disco 0.2s infinite;
 }
 
 /* Content Wrapper */

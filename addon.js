@@ -21,7 +21,7 @@ listItems.forEach(item => {
 
   // Click / Tap (Mobile)
   item.addEventListener("click", () => {
-    if(targetImg.classList.contains("active")){
+    if (targetImg.classList.contains("active")) {
       targetImg.classList.remove("active");
       item.classList.remove("active");
     } else {
@@ -35,20 +35,24 @@ listItems.forEach(item => {
 // --- Secret Easter Egg + Disco Effekt ---
 const footer = document.getElementById("footer");
 const secretImg = document.getElementById("secret");
-const secretPass = "danfred"; // Passwort
-const body = document.body;
+const disco = document.getElementById("disco-overlay");
+
+const secretPass = "danfred";
 
 footer.addEventListener("click", () => {
   const input = prompt("Gib das geheime Bierwort ein (wie heisst Manfred's Bruder??):");
-  if(input?.toLowerCase() === secretPass){
+
+  if (input?.toLowerCase() === secretPass) {
     // Secret Image anzeigen
     secretImg.classList.add("show");
-    // Disco Effekt starten
-    body.classList.add("disco");
 
+    // Disco Overlay aktivieren
+    disco.classList.add("active");
+
+    // Entfernen nach 5 Sekunden
     setTimeout(() => {
       secretImg.classList.remove("show");
-      body.classList.remove("disco");
+      disco.classList.remove("active");
     }, 5000);
   } else {
     alert("Falsches Bierwort");
