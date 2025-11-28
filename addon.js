@@ -32,17 +32,20 @@ listItems.forEach(item => {
   });
 });
 
-// --- Secret Easter Egg + Disco Effekt + Sound ---
+// --- Secret Easter Egg + Disco Effekt + Sound + Debug Mode ---
 const footer = document.getElementById("footer");
 const secretImg = document.getElementById("secret");
 const disco = document.getElementById("disco-overlay");
 const secretPass = "danfred";
-
-// Sound vorbereiten
 const audio = new Audio('disco-beat.mp3');
 
+// Prüfen ob URL ?dev=true enthält
+const urlParams = new URLSearchParams(window.location.search);
+const debugMode = urlParams.get('dev') === 'true';
+if (debugMode) console.log("DEBUG MODE AKTIVIERT: Disco/Secret Test verfügbar");
+
 footer.addEventListener("click", () => {
-  const input = prompt("Gib das geheime Bierwort ein (wie heisst Manfred's Bruder??):");
+  const input = debugMode ? secretPass : prompt("Gib das geheime Bierwort ein (wie heisst Manfred's Bruder??):");
 
   if (input?.toLowerCase() === secretPass) {
     // Secret Image anzeigen
@@ -55,11 +58,14 @@ footer.addEventListener("click", () => {
     audio.currentTime = 0;
     audio.play();
 
+    if (debugMode) console.log("Secret aktiviert! Disco läuft…");
+
     // Entfernen nach 5 Sekunden
     setTimeout(() => {
       secretImg.classList.remove("show");
       disco.classList.remove("active");
       audio.pause();
+      if (debugMode) console.log("Secret & Disco zurückgesetzt");
     }, 5000);
   } else {
     alert("Falsches Bierwort");

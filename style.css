@@ -27,7 +27,7 @@ html, body {
 
 /* DISCO LEVEL 3 langsamer Flicker + leicht transparent */
 #disco-overlay.active {
-  opacity: 0.4;
+  opacity: 0.35;
   animation:
     discoColors 0.5s infinite,
     discoFlash 0.5s infinite alternate,
@@ -80,22 +80,11 @@ html, body {
 }
 
 /* Header */
-header h1 span {
-  color: #ff4500;
-  font-size: 2.5em;
-}
-
-h2 {
-  color: #ff69b4;
-  margin-top: 10px;
-}
+header h1 span { color: #ff4500; font-size: 2.5em; }
+h2 { color: #ff69b4; margin-top: 10px; }
 
 /* Listen */
-ul {
-  list-style: none;
-  padding: 0;
-}
-
+ul { list-style: none; padding: 0; }
 ul li {
   background: rgba(255, 241, 176, 0.8);
   color: #932caf;
@@ -106,21 +95,10 @@ ul li {
   font-weight: bold;
   transition: background 0.3s, color 0.3s;
 }
-
-ul li:hover {
-  background-color: #ff8c42;
-  color: #fff;
-  cursor: pointer;
-}
+ul li:hover { background-color: #ff8c42; color: #fff; cursor: pointer; }
 
 /* Beer Images */
-.beer-images {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  margin-top: 20px;
-}
-
+.beer-images { position: relative; width: 100%; height: 200px; margin-top: 20px; }
 .beer-images img {
   position: absolute;
   top: 0;
@@ -129,16 +107,10 @@ ul li:hover {
   opacity: 0.5;
   transition: transform 0.3s, opacity 0.3s;
 }
-
 .beer-left { left: 25%; transform: translateX(-50%); }
 .beer-mid { left: 50%; transform: translateX(-50%); }
 .beer-right { left: 75%; transform: translateX(-50%); }
-
-.beer-images img.active {
-  transform: scale(1.3) translateX(-50%);
-  opacity: 1;
-  z-index: 10;
-}
+.beer-images img.active { transform: scale(1.3) translateX(-50%); opacity: 1; z-index: 10; }
 
 /* Footer */
 footer {
@@ -158,11 +130,7 @@ footer {
   transition: opacity 0.5s, transform 0.5s;
   z-index: 2000;
 }
-
-.secret-img.show {
-  opacity: 1;
-  transform: scale(1.2);
-}
+.secret-img.show { opacity: 1; transform: scale(1.2); }
 
 /* Mobile */
 @media (max-width: 600px) {
