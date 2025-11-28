@@ -1,4 +1,4 @@
-/* Body */
+/* Body & Hintergrundbild */
 html, body {
   margin: 0;
   height: 100%;
@@ -10,59 +10,62 @@ html, body {
     url('background-wb.png') no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
+  transition: background 0.2s;
 }
 
-/* DISCO OVERLAY */
+/* Disco Overlay */
 #disco-overlay {
   position: fixed;
   top: 0; left: 0;
   width: 100%; height: 100%;
   pointer-events: none;
-  z-index: 5000;
   opacity: 0;
-  transition: opacity 0.1s linear;
+  z-index: 999;
+  transition: opacity 0.2s;
 }
-
 #disco-overlay.active {
   opacity: 1;
-  animation: disco 0.15s infinite;
+  animation:
+    discoColors 0.05s infinite,
+    discoFlash 0.12s infinite alternate,
+    discoShake 0.08s infinite;
 }
 
-/* Disco Farben */
-@keyframes disco {
-  0% { background-color: rgba(255, 0, 0, 0.6); }
-  20% { background-color: rgba(0, 255, 0, 0.6); }
-  40% { background-color: rgba(0, 0, 255, 0.6); }
-  60% { background-color: rgba(255, 255, 0, 0.6); }
-  80% { background-color: rgba(255, 0, 255, 0.6); }
-  100% { background-color: rgba(0, 255, 255, 0.6); }
+/* Ultra-Fast Color Switching */
+@keyframes discoColors {
+  0% { background-color: rgba(255, 0, 0, 0.7); }
+  20% { background-color: rgba(0, 255, 0, 0.7); }
+  40% { background-color: rgba(0, 0, 255, 0.7); }
+  60% { background-color: rgba(255, 255, 0, 0.7); }
+  80% { background-color: rgba(255, 0, 255, 0.7); }
+  100% { background-color: rgba(0, 255, 255, 0.7); }
 }
 
-/* Content wrapper */
-.content-wrapper {
-  margin: 40px 20px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+/* Bright Flash to simulate strobe light */
+@keyframes discoFlash {
+  0% { filter: brightness(1); }
+  50% { filter: brightness(3); }
+  100% { filter: brightness(8); }
 }
+
+/* Screen Shake */
+@keyframes discoShake {
+  0% { transform: translate(0px, 0px); }
+  25% { transform: translate(3px, -2px); }
+  50% { transform: translate(-3px, 2px); }
+  75% { transform: translate(2px, 3px); }
+  100% { transform: translate(-2px, -3px); }
+}
+
+/* Content Wrapper */
+.content-wrapper { margin: 40px 20px; display: flex; flex-direction: column; align-items: center; }
 
 /* Header */
-header h1 span {
-  color: #ff4500;
-  font-size: 2.5em;
-}
+header h1 span { color: #ff4500; font-size: 2.5em; }
+h2 { color: #ff69b4; margin-top: 10px; }
 
-h2 {
-  color: #ff69b4;
-  margin-top: 10px;
-}
-
-/* List */
-ul {
-  list-style: none;
-  padding: 0;
-}
-
+/* List Items */
+ul { list-style: none; padding: 0; }
 ul li {
   background: rgba(255, 241, 176, 0.8);
   color: #932caf;
@@ -73,61 +76,38 @@ ul li {
   font-weight: bold;
   transition: background 0.3s, color 0.3s;
 }
-
 ul li:hover {
   background-color: #ff8c42;
   color: #fff;
   cursor: pointer;
 }
 
-/* Beer images */
-.beer-images {
-  position: relative;
-  width: 100%;
-  height: 200px;
-  margin-top: 20px;
-}
-
+/* Beer Images */
+.beer-images { position: relative; width: 100%; height: 200px; margin-top: 20px; }
 .beer-images img {
   position: absolute;
   top: 0;
-  width: 120px;
+  width: 120px; height: auto;
   opacity: 0.5;
   transition: transform 0.3s, opacity 0.3s;
 }
-
 .beer-left { left: 25%; transform: translateX(-50%); }
 .beer-mid { left: 50%; transform: translateX(-50%); }
 .beer-right { left: 75%; transform: translateX(-50%); }
+.beer-images img.active { transform: scale(1.3) translateX(-50%); opacity: 1; z-index: 10; }
 
-.beer-images img.active {
-  transform: scale(1.3) translateX(-50%);
-  opacity: 1;
-  z-index: 10;
-}
+/* Footer */
+footer { font-size: 0.9em; margin-top: 20px; color: white; text-shadow: 1px 1px 3px black; }
 
-/* Secret image */
-.secret-img {
-  position: fixed;
-  bottom: 20px;
-  right: 20px;
-  width: 150px;
-  opacity: 0;
-  transition: opacity 0.5s, transform 0.5s;
-  z-index: 6000;
-}
+/* Secret Image */
+.secret-img { position: fixed; bottom: 20px; right: 20px; width: 150px; opacity: 0; transition: opacity 0.5s, transform 0.5s; z-index: 2000; }
+.secret-img.show { opacity: 1; transform: scale(1.2); }
 
-.secret-img.show {
-  opacity: 1;
-  transform: scale(1.2);
-}
-
-/* Mobile Optimizing */
+/* Mobile */
 @media (max-width: 600px) {
-  ul li {
-    width: 90%;
-  }
-  .beer-images img {
-    width: 80px;
-  }
+  .content-wrapper { margin: 30px 10px; }
+  ul li { width: 90%; padding: 10px; font-size: 1em; }
+  header h1 span { font-size: 1.8em; }
+  h2 { font-size: 1.2em; }
+  .beer-images img { width: 80px; }
 }
