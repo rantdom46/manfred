@@ -11,19 +11,17 @@ listItems.forEach(item => {
   const beerId = item.dataset.beer;
   const targetImg = document.getElementById(beerId);
 
-  // Hover (Desktop)
   item.addEventListener("mouseenter", () => {
     resetActive();
     targetImg.classList.add("active");
     item.classList.add("active");
   });
+
   item.addEventListener("mouseleave", () => resetActive());
 
-  // Click / Tap (Mobile)
   item.addEventListener("click", () => {
     if (targetImg.classList.contains("active")) {
-      targetImg.classList.remove("active");
-      item.classList.remove("active");
+      resetActive();
     } else {
       resetActive();
       targetImg.classList.add("active");
@@ -32,28 +30,26 @@ listItems.forEach(item => {
   });
 });
 
-// --- Secret Easter Egg + Disco Effekt ---
+// --- Geheimwort + Disco ---
 const footer = document.getElementById("footer");
 const secretImg = document.getElementById("secret");
 const disco = document.getElementById("disco-overlay");
 
-const secretPass = "danfred";
+const secretPass = "Danfred";
 
 footer.addEventListener("click", () => {
   const input = prompt("Gib das geheime Bierwort ein (wie heisst Manfred's Bruder??):");
 
   if (input?.toLowerCase() === secretPass) {
-    // Secret Image anzeigen
-    secretImg.classList.add("show");
 
-    // Disco Overlay aktivieren
+    secretImg.classList.add("show");
     disco.classList.add("active");
 
-    // Entfernen nach 5 Sekunden
     setTimeout(() => {
       secretImg.classList.remove("show");
       disco.classList.remove("active");
     }, 5000);
+
   } else {
     alert("Falsches Bierwort");
   }

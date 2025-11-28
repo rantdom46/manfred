@@ -1,4 +1,4 @@
-/* Body & Hintergrundbild */
+/* Body */
 html, body {
   margin: 0;
   height: 100%;
@@ -10,26 +10,35 @@ html, body {
     url('background-wb.png') no-repeat center center fixed;
   background-size: cover;
   background-attachment: fixed;
-  transition: background 0.2s;
 }
 
-/* DISCO OVERRIDE – entfernt Bild + Gradient */
-body.disco {
-  background: none !important;
-  animation: disco 0.2s infinite;
+/* DISCO OVERLAY */
+#disco-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 5000;
+  opacity: 0;
+  transition: opacity 0.1s linear;
 }
 
-/* Disco Effekt */
+#disco-overlay.active {
+  opacity: 1;
+  animation: disco 0.15s infinite;
+}
+
+/* Disco Farben */
 @keyframes disco {
-  0% { background-color: #ff0000; }
-  20% { background-color: #00ff00; }
-  40% { background-color: #0000ff; }
-  60% { background-color: #ffff00; }
-  80% { background-color: #ff00ff; }
-  100% { background-color: #00ffff; }
+  0% { background-color: rgba(255, 0, 0, 0.6); }
+  20% { background-color: rgba(0, 255, 0, 0.6); }
+  40% { background-color: rgba(0, 0, 255, 0.6); }
+  60% { background-color: rgba(255, 255, 0, 0.6); }
+  80% { background-color: rgba(255, 0, 255, 0.6); }
+  100% { background-color: rgba(0, 255, 255, 0.6); }
 }
 
-/* Content Wrapper */
+/* Content wrapper */
 .content-wrapper {
   margin: 40px 20px;
   display: flex;
@@ -48,7 +57,7 @@ h2 {
   margin-top: 10px;
 }
 
-/* Listen */
+/* List */
 ul {
   list-style: none;
   padding: 0;
@@ -71,7 +80,7 @@ ul li:hover {
   cursor: pointer;
 }
 
-/* Beer Images */
+/* Beer images */
 .beer-images {
   position: relative;
   width: 100%;
@@ -83,7 +92,6 @@ ul li:hover {
   position: absolute;
   top: 0;
   width: 120px;
-  height: auto;
   opacity: 0.5;
   transition: transform 0.3s, opacity 0.3s;
 }
@@ -98,15 +106,7 @@ ul li:hover {
   z-index: 10;
 }
 
-/* Footer */
-footer {
-  font-size: 0.9em;
-  margin-top: 20px;
-  color: white;
-  text-shadow: 1px 1px 3px black;
-}
-
-/* Secret Image */
+/* Secret image */
 .secret-img {
   position: fixed;
   bottom: 20px;
@@ -114,7 +114,7 @@ footer {
   width: 150px;
   opacity: 0;
   transition: opacity 0.5s, transform 0.5s;
-  z-index: 2000;
+  z-index: 6000;
 }
 
 .secret-img.show {
@@ -122,26 +122,11 @@ footer {
   transform: scale(1.2);
 }
 
-/* Mobile-Optimierung */
+/* Mobile Optimizing */
 @media (max-width: 600px) {
-  .content-wrapper {
-    margin: 30px 10px;
-  }
-
   ul li {
     width: 90%;
-    padding: 10px;
-    font-size: 1em;
   }
-
-  header h1 span {
-    font-size: 1.8em;
-  }
-
-  h2 {
-    font-size: 1.2em;
-  }
-
   .beer-images img {
     width: 80px;
   }
