@@ -1,4 +1,4 @@
-// --- Bier Hover & Click ---
+// --- Bier Hover und Click ---
 const listItems = document.querySelectorAll("ul li");
 const beerImages = document.querySelectorAll(".beer-images img");
 
