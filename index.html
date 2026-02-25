@@ -1,60 +1,45 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Manfred's</title>
+  <title>GreenPlay - Eco Game</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-  <!-- Disco Overlay -->
-  <div id="disco-overlay"></div>
-
-  <!-- Content -->
-  <div class="content-wrapper">
+  <div class="container">
     <header>
-      <h1>Willkommen bei <span>Manfred's</span></h1>
-      <p>Nur echte Männer trinken Manfreds! (und Frauen natürlich auch)</p>
+      <h1>GreenPlay</h1>
+      <p>An eco-friendly game by the [Team Name]</p>
     </header>
 
     <main>
-      <section>
-        <h2>Unsere Spezialitäten</h2>
+      <section id="about">
+        <h2>About the Game</h2>
+        <p>Join a world where nature wins! Plant trees, clean rivers, and save the planet in this fun, educational game.</p>
+      </section>
+
+      <section id="features">
+        <h2>Features</h2>
         <ul>
-          <li data-beer="beer1">Manfreds Mega-Hopfen Explosion</li>
-          <li data-beer="beer2">Leichtvergesslich Aperol</li>
-          <li data-beer="beer3">Lillet für Mathelehrer</li>
+          <li>Colorful environments</li>
+          <li>Easy controls</li>
+          <li>Learn about sustainability</li>
+          <li>Collect energy points</li>
         </ul>
-
-        <div class="beer-images">
-          <img id="beer1" src="manfred-bier-bier.png" alt="Mega-Hopfen" class="beer-mid" />
-          <img id="beer2" src="manfred-bier-aperol.png" alt="Aperol" class="beer-left" />
-          <img id="beer3" src="manfred-bier-lillet.png" alt="Lillet" class="beer-right" />
-        </div>
       </section>
 
-      <section>
-        <h2>Empfehlung der Woche</h2>
-        <p>"Genieße Manfreds während der Klassenarbeit – fördert die Kreativität!"</p>
-      </section>
-
-      <section>
-        <h2>Kontakt</h2>
-        <p>Email: <a href="mailto:manfreds.bier@trollmail.de">manfreds.bier@trollmail.de</a></p>
+      <section id="purchase">
+        <h2>Buy the Game</h2>
+        <button id="buy-button">Purchase Now</button>
+        <p class="note">(This is a troll site; no real transactions)</p>
       </section>
     </main>
+
+    <footer>
+      <p>© 2026 GreenPlay. All rights reserved.</p>
+    </footer>
   </div>
-
-  <!-- Footer -->
-  <footer id="footer">
-    <p>© 2025 Manfred's – Wir übernehmen keine Haftung für verpatzte Klassenarbeiten</p>
-  </footer>
-  <p>Gemacht mit Hilfe von Eigenwissen & optional Cline. Arbeitszeit: ca. 1 Monat á ~40+ Stunden</p>
-  <p>Bildrechte beim Projektteam. Projekt erstellt im Rahmen des Auftrages "Werbevideo"</p>
-
-  <!-- Secret Image -->
-  <img id="secret" src="manfred-manfred.png" alt="Secret Bier" class="secret-img" />
 
   <script src="addon.js"></script>
 </body>
