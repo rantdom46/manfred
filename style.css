@@ -4,7 +4,8 @@ html, body {
   padding: 0;
   height: 100%;
   font-family: "Comic Sans MS", sans-serif;
-  background: linear-gradient(180deg, #001f3f 0%, #004225 100%);
+  /* plain white base, no gradient to avoid blue artifacts */
+  background: #ffffff;
   color: #fff;
   text-align: center;
 }
