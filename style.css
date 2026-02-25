@@ -9,43 +9,11 @@ html, body {
   text-align: center;
 }
 
-/* sidebar */
-.sidebar {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 200px;
-  height: 100%;
-  background: #002b4f;
-  padding-top: 40px;
-}
-.sidebar nav ul {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.sidebar nav ul li {
-  margin: 15px 0;
-}
-.sidebar nav ul li a {
-  color: #ffeb3b;
-  text-decoration: none;
-  font-weight: bold;
-  display: block;
-  padding: 8px 16px;
-  transition: background 0.3s, color 0.3s;
-}
-.sidebar nav ul li a:hover {
-  background: #ffeb3b;
-  color: #002b4f;
-  text-shadow: 0 0 5px #fff;
-}
-
-/* adjust container when sidebar present */
+/* remove sidebar (no overlay) */
 .container {
   max-width: 800px;
   margin: 0 auto;
-  padding: 20px 20px 20px 220px;
+  padding: 20px;
 }
 
 .container {
@@ -56,7 +24,11 @@ html, body {
 
 header h1 {
   font-size: 3em;
-  color: #ffeb3b;
+  /* gradient text with red, yellow, green */
+  background: linear-gradient(45deg, #ff0000, #ffff00, #00ff00);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 header p {
   font-size: 1.2em;
@@ -71,11 +43,15 @@ section {
 }
 
 /* color variations for alternating sections */
-section:nth-child(odd) { background: rgba(255,255,255,0.1); }
-section:nth-child(even) { background: rgba(128,128,128,0.1); }
+#about { background: linear-gradient(135deg, #2e8b57, #006400); }
+#features { background: linear-gradient(135deg, #00008b, #0000cd); }
+#purchase { background: #ffffff; color: #000; }
+#purchase h2, #purchase p, #purchase .note { color: #000; }
+#contact { background: linear-gradient(135deg, #ff0000, #ffff00); color: #000; }
+
 
 /* special red highlight for contact area */
-#contact { background: rgba(255,0,0,0.1); }
+#contact { background: rgba(255,0,0,0.1); } /* kept for compatibility */
 
 
 /* headings with alternating colors and letter spacing for variety */
