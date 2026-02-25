@@ -9,6 +9,45 @@ html, body {
   text-align: center;
 }
 
+/* sidebar */
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 100%;
+  background: #002b4f;
+  padding-top: 40px;
+}
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar nav ul li {
+  margin: 15px 0;
+}
+.sidebar nav ul li a {
+  color: #ffeb3b;
+  text-decoration: none;
+  font-weight: bold;
+  display: block;
+  padding: 8px 16px;
+  transition: background 0.3s, color 0.3s;
+}
+.sidebar nav ul li a:hover {
+  background: #ffeb3b;
+  color: #002b4f;
+  text-shadow: 0 0 5px #fff;
+}
+
+/* adjust container when sidebar present */
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px 20px 20px 220px;
+}
+
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -25,10 +64,38 @@ header p {
 }
 
 section {
-  background: rgba(200,200,200,0.1);
+  background: rgba(200,200,200,0.2);
   margin: 20px 0;
   padding: 15px;
   border-radius: 8px;
+}
+
+/* color variations for alternating sections */
+section:nth-child(odd) { background: rgba(255,255,255,0.1); }
+section:nth-child(even) { background: rgba(128,128,128,0.1); }
+
+/* special red highlight for contact area */
+#contact { background: rgba(255,0,0,0.1); }
+
+
+/* headings with alternating colors and letter spacing for variety */
+h2 {
+  color: #ffeb3b;
+  margin-top: 0;
+  letter-spacing: 2px;
+  text-shadow: 1px 1px 2px #000;
+}
+
+header h1 {
+  font-family: "Comic Sans MS", cursive;
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  text-shadow: 2px 2px 4px #000;
+}
+header p {
+  font-style: italic;
+  color: #ddd;
+  letter-spacing: 1px;
 }
 
 h2 {
@@ -46,14 +113,14 @@ ul li {
 
 /* purchase button with glow */
 #buy-button {
-  background: #007f0e;
-  color: #fff;
-  border: none;
+  background: linear-gradient(45deg, #007f0e, #004225);
+  color: #ffeb3b;
+  border: 2px solid #ff0000;
   padding: 12px 24px;
   font-size: 1.2em;
   border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 0 8px rgba(0, 255, 0, 0.7);
+  box-shadow: 0 0 8px rgba(0, 255, 0, 0.7), 0 0 4px rgba(255, 0, 0, 0.5);
   transition: box-shadow 0.3s, transform 0.2s;
 }
 #buy-button:hover {
@@ -66,7 +133,7 @@ ul li {
 
 .note {
   font-size: 0.8em;
-  color: #ccc;
+  color: #ffa;
   margin-top: 8px;
 }
 
