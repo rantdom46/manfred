@@ -1,128 +1,99 @@
-/* Base styling for eco-friendly theme */
+/* Base styling */
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  font-family: "Comic Sans MS", sans-serif;
-  /* plain white base, no gradient to avoid blue artifacts */
+  font-family: Arial, sans-serif;
   background: #ffffff;
-  color: #fff;
+  color: #1a1a1a;
   text-align: center;
 }
 
-/* remove sidebar (no overlay) */
+/* Layout */
 .container {
-  max-width: 800px;
+  max-width: 900px;
   margin: 0 auto;
   padding: 20px;
 }
 
-.container {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-}
-
-header h1 {
-  font-size: 3em;
-  /* gradient text with red, yellow, green */
-  background: linear-gradient(45deg, #ff0000, #ffff00, #00ff00);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-header p {
-  font-size: 1.2em;
-  color: #ddd;
-}
-
-section {
-  background: rgba(200,200,200,0.2);
-  margin: 20px 0;
-  padding: 15px;
+/* Header */
+header {
+  background: #003a70; /* main dark blue */
+  color: white;
+  padding: 30px 20px;
   border-radius: 8px;
 }
 
-/* color variations for alternating sections */
-#about { background: linear-gradient(135deg, #2e8b57, #006400); }
-#features { background: linear-gradient(135deg, #00008b, #0000cd); }
-#purchase { background: #ffffff; color: #000; }
-#purchase h2, #purchase p, #purchase .note { color: #000; }
-#contact { background: linear-gradient(135deg, #ff0000, #ffff00); color: #000; }
-
-
-/* special red highlight for contact area */
-#contact { background: rgba(255,0,0,0.1); } /* kept for compatibility */
-
-
-/* headings with alternating colors and letter spacing for variety */
-h2 {
-  color: #ffeb3b;
-  margin-top: 0;
-  letter-spacing: 2px;
-  text-shadow: 1px 1px 2px #000;
-}
-
 header h1 {
-  font-family: "Comic Sans MS", cursive;
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  text-shadow: 2px 2px 4px #000;
+  margin: 0;
+  font-size: 2.5em;
+  letter-spacing: 2px;
 }
+
 header p {
-  font-style: italic;
-  color: #ddd;
-  letter-spacing: 1px;
+  margin-top: 10px;
+  opacity: 0.9;
 }
 
+/* Sections */
+section {
+  background: #f4f6f9;
+  margin: 20px 0;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: left;
+}
+
+/* Section headings */
 h2 {
-  color: #ffeb3b;
+  color: #003a70;
   margin-top: 0;
+  border-bottom: 2px solid #003a70;
+  padding-bottom: 5px;
 }
 
+/* Lists */
 ul {
-  list-style: none;
-  padding: 0;
-}
-ul li {
-  margin: 5px 0;
+  padding-left: 20px;
 }
 
-/* purchase button with glow */
+/* Purchase section highlight */
+#purchase {
+  background: #003a70;
+  color: white;
+  text-align: center;
+}
+
+#purchase h2 {
+  color: white;
+  border: none;
+}
+
+/* Button */
 #buy-button {
-  background: linear-gradient(45deg, #007f0e, #004225);
-  color: #ffeb3b;
-  border: 2px solid #ff0000;
+  background: white;
+  color: #003a70;
+  border: 2px solid white;
   padding: 12px 24px;
-  font-size: 1.2em;
+  font-size: 1em;
   border-radius: 6px;
   cursor: pointer;
-  box-shadow: 0 0 8px rgba(0, 255, 0, 0.7), 0 0 4px rgba(255, 0, 0, 0.5);
-  transition: box-shadow 0.3s, transform 0.2s;
+  transition: 0.2s ease;
 }
+
 #buy-button:hover {
-  box-shadow: 0 0 16px rgba(0, 255, 0, 1);
-  transform: translateY(-2px);
-}
-#buy-button:active {
-  transform: translateY(0);
+  background: #e6e6e6;
 }
 
-.note {
-  font-size: 0.8em;
-  color: #ffa;
-  margin-top: 8px;
-}
-
+/* Footer */
 footer {
-  font-size: 0.9em;
   margin-top: 30px;
-  color: #ccc;
+  font-size: 0.9em;
+  color: #555;
 }
 
-/* responsive adjustments */
+/* Responsive */
 @media (max-width: 600px) {
-  header h1 { font-size: 2.2em; }
-  section { padding: 10px; }
-  #buy-button { width: 90%; font-size: 1em; }
+  section {
+    text-align: center;
+  }
 }
