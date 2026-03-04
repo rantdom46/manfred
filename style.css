@@ -1,99 +1,133 @@
-/* Base styling */
+/* ===== Base ===== */
 html, body {
   margin: 0;
   padding: 0;
-  font-family: Arial, sans-serif;
-  background: #ffffff;
+  font-family: "Segoe UI", Arial, sans-serif;
+  background: linear-gradient(180deg, #f4f8fb, #e9f5ee);
   color: #1a1a1a;
   text-align: center;
 }
 
-/* Layout */
 .container {
-  max-width: 900px;
+  max-width: 950px;
   margin: 0 auto;
   padding: 20px;
 }
 
-/* Header */
+/* ===== Header ===== */
 header {
-  background: #003a70; /* main dark blue */
+  background: linear-gradient(135deg, #003a70, #006d5b);
   color: white;
-  padding: 30px 20px;
-  border-radius: 8px;
+  padding: 40px 20px;
+  border-radius: 12px;
+  box-shadow: 0 0 25px rgba(0, 150, 100, 0.3);
 }
 
 header h1 {
   margin: 0;
-  font-size: 2.5em;
-  letter-spacing: 2px;
+  font-size: 2.8em;
+  letter-spacing: 3px;
+  text-shadow: 0 0 8px rgba(0,255,150,0.6);
 }
 
 header p {
-  margin-top: 10px;
-  opacity: 0.9;
+  margin-top: 12px;
+  opacity: 0.95;
 }
 
-/* Sections */
+/* ===== Sections ===== */
 section {
-  background: #f4f6f9;
-  margin: 20px 0;
-  padding: 20px;
-  border-radius: 8px;
+  background: white;
+  margin: 25px 0;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   text-align: left;
 }
 
-/* Section headings */
+section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 120, 80, 0.15);
+}
+
+/* ===== Headings ===== */
 h2 {
   color: #003a70;
   margin-top: 0;
-  border-bottom: 2px solid #003a70;
-  padding-bottom: 5px;
+  position: relative;
 }
 
-/* Lists */
+h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: linear-gradient(90deg, #003a70, #00a86b);
+  margin-top: 8px;
+  border-radius: 2px;
+}
+
+/* ===== Lists ===== */
 ul {
   padding-left: 20px;
 }
 
-/* Purchase section highlight */
+ul li {
+  margin: 8px 0;
+}
+
+/* ===== Purchase Highlight Section ===== */
 #purchase {
-  background: #003a70;
+  background: linear-gradient(135deg, #003a70, #00a86b);
   color: white;
   text-align: center;
+  box-shadow: 0 0 30px rgba(0, 200, 120, 0.3);
 }
 
 #purchase h2 {
   color: white;
-  border: none;
 }
 
-/* Button */
+.note {
+  font-size: 0.85em;
+  opacity: 0.85;
+}
+
+/* ===== Button ===== */
 #buy-button {
   background: white;
   color: #003a70;
-  border: 2px solid white;
-  padding: 12px 24px;
-  font-size: 1em;
-  border-radius: 6px;
+  border: none;
+  padding: 14px 28px;
+  font-size: 1.1em;
+  border-radius: 8px;
   cursor: pointer;
-  transition: 0.2s ease;
+  margin-top: 15px;
+  font-weight: bold;
+  transition: all 0.3s ease;
+  box-shadow: 0 0 15px rgba(0,255,150,0.4);
 }
 
 #buy-button:hover {
-  background: #e6e6e6;
+  background: #e6fff6;
+  transform: translateY(-3px);
+  box-shadow: 0 0 25px rgba(0,255,150,0.8);
 }
 
-/* Footer */
+#buy-button:active {
+  transform: translateY(0);
+}
+
+/* ===== Footer ===== */
 footer {
-  margin-top: 30px;
+  margin-top: 40px;
   font-size: 0.9em;
   color: #555;
 }
 
-/* Responsive */
+/* ===== Responsive ===== */
 @media (max-width: 600px) {
-  section {
-    text-align: center;
-  }
+  header h1 { font-size: 2.2em; }
+  section { text-align: center; }
 }
