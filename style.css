@@ -31,12 +31,30 @@ body {
   background: url("leaf.png") no-repeat center/contain;
   /* allow mouse interactions now */
   pointer-events: auto;
-  /* no CSS animation, movement handled via JS physics */
   z-index: 0;
   /* slightly higher opacity and will vary per leaf */
   opacity: 0.7;
   filter: blur(1px);
-  transition: opacity 0.3s, transform 0.1s;
+  transition: opacity 0.3s, transform 0.2s;
+}
+
+@keyframes fall {
+  0% {
+    transform: translateY(-60px) translateX(0px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(50vh) translateX(30px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(110vh) translateX(-30px) rotate(360deg);
+  }
+}
+
+/* when a leaf has finished its drop, it keeps this class */
+.leaf.landed {
+  animation: none !important;
+  top: auto;
+  bottom: 0;
 }
 
 
