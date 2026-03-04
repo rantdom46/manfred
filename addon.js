@@ -7,27 +7,86 @@ if (buyButton) {
   });
 }
 
-// ===== Leaf Particle Generator =====
+// ===== Leaf Particle Generator (with simple physics) =====
+const leaves = [];
+
 function createLeaf() {
   const leaf = document.createElement("div");
   leaf.classList.add("leaf");
 
-  // random starting position slightly off-screen for natural entry
-  leaf.style.left = (Math.random() * (window.innerWidth + 100) - 50) + "px";
-  // random size between 40px and 80px
-  const size = 40 + Math.random() * 40;
+  // random horizontal start slightly off-screen
+  const startX = Math.random() * (window.innerWidth + 100) - 50;
+  const size = 40 + Math.random() * 40; // leaf size
   leaf.style.width = size + "px";
   leaf.style.height = size + "px";
-  // random animation duration and a higher base opacity
-  leaf.style.animationDuration = (6 + Math.random() * 6) + "s";
+  leaf.style.left = startX + "px";
+  leaf.style.top = -size + "px";
   leaf.style.opacity = 0.4 + Math.random() * 0.6;
 
   document.body.appendChild(leaf);
 
-  setTimeout(() => {
-    leaf.remove();
-  }, 12000); // keep a slightly longer lifespan
+  const data = {
+    el: leaf,
+    x: startX,
+    y: -size,
+    vx: (Math.random() - 0.5) * 1.5,
+    vy: 0,
+    width: size,
+    height: size,
+    landed: false
+  };
+
+  // bounce/step when mouse enters
+  leaf.addEventListener("mouseenter", () => {
+    data.vy = -4;
+    data.vx += (Math.random() - 0.5) * 4;
+  });
+
+  leaves.push(data);
 }
+
+function updateLeaves() {
+  const gravity = 0.1;
+  const scrollAccel = 0.5;
+
+  leaves.forEach(d => {
+    if (!d.landed) {
+      d.vy += gravity;
+      d.y += d.vy;
+      d.x += d.vx;
+
+      // wrap horizontally
+      if (d.x < -d.width) d.x = window.innerWidth;
+      if (d.x > window.innerWidth) d.x = -d.width;
+
+      // land at bottom
+      if (d.y >= window.innerHeight - d.height) {
+        d.y = window.innerHeight - d.height;
+        d.landed = true;
+        d.vy = 0;
+        // remove after a long time so they pile up
+        setTimeout(() => {
+          d.el.remove();
+        }, 30000);
+      }
+
+      d.el.style.transform = `translate(${d.x}px, ${d.y}px)`;
+    }
+  });
+
+  requestAnimationFrame(updateLeaves);
+}
+
+// increase gravity when user scrolls
+window.addEventListener("scroll", () => {
+  leaves.forEach(d => {
+    if (!d.landed) {
+      d.vy += scrollAccel;
+    }
+  });
+});
+
+updateLeaves();
 
 // Spawn leaves every 800ms
 setInterval(createLeaf, 800);

@@ -25,32 +25,20 @@ body {
 .leaf {
   position: fixed;
   top: -60px;
-  /* larger by default, will often be randomized in JS */
+  /* larger by default, randomized in JS */
   width: 60px;
   height: 60px;
   background: url("leaf.png") no-repeat center/contain;
-  pointer-events: none;
-  animation: fall linear infinite;
-  /* move above the main gradient so leaves are visible */
+  /* allow mouse interactions now */
+  pointer-events: auto;
+  /* no CSS animation, movement handled via JS physics */
   z-index: 0;
   /* slightly higher opacity and will vary per leaf */
   opacity: 0.7;
-  /* tint green and soften white highlights */
-  filter: blur(1px) hue-rotate(90deg) saturate(1.2);
-  transition: opacity 0.3s;
+  filter: blur(1px);
+  transition: opacity 0.3s, transform 0.1s;
 }
 
-@keyframes fall {
-  0% {
-    transform: translateY(-60px) translateX(0px) rotate(0deg);
-  }
-  50% {
-    transform: translateY(50vh) translateX(30px) rotate(180deg);
-  }
-  100% {
-    transform: translateY(110vh) translateX(-30px) rotate(360deg);
-  }
-}
 
 @keyframes bgMove {
   0% { background-position: 0% 50%; }
