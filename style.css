@@ -40,10 +40,6 @@ body {
   overflow: visible;
 }
 
-.leaf.hovered {
-  transform: scale(1.2);
-}
-
 @keyframes fall {
   0% {
     transform: translateY(-60px) translateX(0px) rotate(0deg);
