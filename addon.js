@@ -12,15 +12,21 @@ function createLeaf() {
   const leaf = document.createElement("div");
   leaf.classList.add("leaf");
 
-  leaf.style.left = Math.random() * window.innerWidth + "px";
-  leaf.style.animationDuration = (5 + Math.random() * 5) + "s";
-  leaf.style.opacity = Math.random();
+  // random starting position slightly off-screen for natural entry
+  leaf.style.left = (Math.random() * (window.innerWidth + 100) - 50) + "px";
+  // random size between 40px and 80px
+  const size = 40 + Math.random() * 40;
+  leaf.style.width = size + "px";
+  leaf.style.height = size + "px";
+  // random animation duration and a higher base opacity
+  leaf.style.animationDuration = (6 + Math.random() * 6) + "s";
+  leaf.style.opacity = 0.4 + Math.random() * 0.6;
 
   document.body.appendChild(leaf);
 
   setTimeout(() => {
     leaf.remove();
-  }, 10000);
+  }, 12000); // keep a slightly longer lifespan
 }
 
 // Spawn leaves every 800ms
