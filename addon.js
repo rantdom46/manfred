@@ -16,30 +16,15 @@ let lastMouseX = 0;
 let lastMouseY = 0;
 const dragState = {element: null, offsetX: 0, offsetY: 0};
 
-// global mousemove for pushing/dragging
+// global mousemove for dragging only
 document.addEventListener("mousemove", e => {
+  // calculate movement deltas
   const dx = e.clientX - lastMouseX;
   const dy = e.clientY - lastMouseY;
 
-  // dragging takes priority
   if (dragState.element) {
     dragState.element.style.left = e.clientX - dragState.offsetX + "px";
     dragState.element.style.top = e.clientY - dragState.offsetY + "px";
-  } else {
-    allLeaves.forEach(leaf => {
-      const rect = leaf.getBoundingClientRect();
-      if (
-        e.clientX >= rect.left && e.clientX <= rect.right &&
-        e.clientY >= rect.top && e.clientY <= rect.bottom
-      ) {
-        // stop any ongoing animation so manual positioning works
-        if (leaf.style.animation) leaf.style.animation = "";
-        const left = parseFloat(leaf.style.left) || rect.left;
-        const top = parseFloat(leaf.style.top) || rect.top;
-        leaf.style.left = left + dx + "px";
-        leaf.style.top = top + dy + "px";
-      }
-    });
   }
 
   lastMouseX = e.clientX;
@@ -81,13 +66,9 @@ function createLeaf() {
     leaf.style.animation = "";
   });
 
-  // interaction: hover makes leaf jitter
-  leaf.addEventListener("mouseenter", () => {
-    leaf.style.transform += " scale(1.2)";
-    setTimeout(() => {
-      leaf.style.transform = leaf.style.transform.replace(/ scale\(.+?\)/, "");
-    }, 300);
-  });
+  // interaction: hover adds temporary class for scale
+  leaf.addEventListener("mouseenter", () => leaf.classList.add("hovered"));
+  leaf.addEventListener("mouseleave", () => leaf.classList.remove("hovered"));
 
   // when animation ends, mark as landed and keep in place
   leaf.addEventListener("animationend", () => {
@@ -104,6 +85,15 @@ function createLeaf() {
       if (idx2 !== -1) allLeaves.splice(idx2, 1);
     }, 60000);
   });
+
+  // dragging end handler to resume fall if needed
+  leaf.addEventListener("mouseup", () => {
+    if (!leaf.classList.contains("landed")) {
+      // restart animation from current position with short duration
+      leaf.style.animation = `fall ${2 + Math.random() * 2}s linear forwards`;
+    }
+  });
+}
 }
 
 // add some permanent leaves at bottom

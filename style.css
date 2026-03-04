@@ -36,6 +36,12 @@ body {
   opacity: 0.7;
   filter: blur(1px);
   transition: opacity 0.3s, transform 0.2s;
+  /* ensure the entire leaf is visible and no clipping */
+  overflow: visible;
+}
+
+.leaf.hovered {
+  transform: scale(1.2);
 }
 
 @keyframes fall {
