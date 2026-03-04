@@ -94,10 +94,10 @@ function createLeaf() {
     }
   });
 }
-}
+
 
 // add some permanent leaves at bottom
-function createPermanentLeaves(count = 5) {
+function createPermanentLeaves(count = 20) {
   for (let i = 0; i < count; i++) {
     const leaf = document.createElement("div");
     leaf.classList.add("leaf", "landed");
