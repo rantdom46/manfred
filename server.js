@@ -16,13 +16,18 @@ const client = new MongoClient(MONGO_URI);
 
 async function connectDB() {
   try {
+    console.log('Attempting MongoDB connection...');
+    console.log('MONGO_URI:', MONGO_URI ? 'SET' : 'NOT SET');
+    console.log('DB_NAME:', DB_NAME);
+    
     await client.connect();
     db = client.db(DB_NAME);
     const collection = db.collection(COLLECTION_NAME);
     await collection.createIndex({ startDate: 1, endDate: 1 });
-    console.log('Connected to MongoDB');
+    console.log('✅ Connected to MongoDB');
   } catch (err) {
-    console.error('MongoDB connection error:', err);
+    console.error('❌ MongoDB connection error:', err.message);
+    console.error('Full error:', err);
     process.exit(1);
   }
 }
