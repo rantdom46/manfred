@@ -1,54 +1,51 @@
-// ===== Booking helper (export-ready; backend may override) =====
-let bookings = [];
+// ===== Booking Form Submission =====
+const bookingForm = document.getElementById("booking-form");
+const bookingMessage = document.getElementById("booking-message");
 
-function exportBookings() {
-  return JSON.stringify(bookings, null, 2);
-}
+if (bookingForm && bookingMessage) {
+  bookingForm.addEventListener("submit", async (e) => {
+    e.preventDefault();
 
-window.exportBookings = exportBookings;
+    const name = document.getElementById("booking-name").value.trim();
+    const startDate = document.getElementById("booking-start").value;
+    const endDate = document.getElementById("booking-end").value;
 
-// ===== Purchase/Booking Button =====
-const buyButton = document.getElementById("buy-button");
-
-if (buyButton) {
-  buyButton.addEventListener("click", async () => {
-    const name = (window.prompt("Enter your name for booking:", "") || "").trim();
     if (!name) {
-      return alert("Name is required for booking.");
-    }
-
-    const start = window.prompt("Start date (YYYY-MM-DD):", "");
-    if (!start || !/^\d{4}-\d{2}-\d{2}$/.test(start)) {
-      return alert("Please enter a valid start date in YYYY-MM-DD format.");
-    }
-
-    const end = window.prompt("End date (YYYY-MM-DD):", "");
-    if (!end || !/^\d{4}-\d{2}-\d{2}$/.test(end)) {
-      return alert("Please enter a valid end date in YYYY-MM-DD format.");
-    }
-
-    if (new Date(start) > new Date(end)) {
-      return alert("End date must be the same or after the start date.");
+      showMessage("Name is required", "error");
+      return;
     }
 
     try {
-      const res = await fetch("/api/book", {
+      const response = await fetch("https://flip-dqnn.onrender.com/api/book", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ name, startDate: start, endDate: end })
+        body: JSON.stringify({ name, startDate, endDate })
       });
 
-      const data = await res.json();
-      if (!res.ok) {
+      const data = await response.json();
+
+      if (!response.ok) {
         throw new Error(data.message || "Booking failed");
       }
 
-      bookings = data.bookings || bookings;
-      alert(`Booked! ${name} from ${start} to ${end}. (Sent to Discord)`);
+      showMessage(`✅ Booked! ${name} from ${startDate} to ${endDate}. Check Discord! 🎲`, "success");
+      bookingForm.reset();
     } catch (error) {
-      alert(`Booking error: ${error.message}`);
+      console.error(error);
+      showMessage(`❌ Error: ${error.message}`, "error");
     }
   });
+
+  function showMessage(text, type) {
+    bookingMessage.textContent = text;
+    bookingMessage.className = `booking-message ${type}`;
+    bookingMessage.style.display = "block";
+    if (type === "success") {
+      setTimeout(() => {
+        bookingMessage.style.display = "none";
+      }, 5000);
+    }
+  }
 }
 
 

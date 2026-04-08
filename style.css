@@ -145,47 +145,96 @@ ul li {
   margin: 8px 0;
 }
 
-/* Purchase Section */
-#purchase {
+/* Booking Form Section */
+#booking {
   background: linear-gradient(135deg, rgba(0,58,112,0.6), rgba(0,168,107,0.6));
   color: #cbecc9;
-  text-align: center;
   box-shadow: 0 0 40px rgba(0, 255, 150, 0.3);
 }
 
-#purchase h2 {
+#booking h2 {
   color: #cbecc9;
 }
 
-.note {
-  font-size: 0.85em;
-  opacity: 0.85;
+#booking-form {
+  max-width: 500px;
+  margin: 0 auto;
 }
 
-/* Button */
-#buy-button {
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #00d47a;
+  font-size: 0.95em;
+}
+
+.form-group input {
+  padding: 12px;
+  border: 1px solid #00d47a;
+  border-radius: 6px;
+  background: rgba(0, 30, 40, 0.8);
+  color: #cbecc9;
+  font-size: 1em;
+  transition: all 0.3s ease;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #00ff9e;
+  box-shadow: 0 0 10px rgba(0, 220, 130, 0.6);
+  background: rgba(0, 40, 50, 0.9);
+}
+
+.form-button {
+  width: 100%;
+  padding: 14px;
   background: #003a50;
   color: #00d47a;
   border: 1px solid #00d47a;
-  padding: 14px 28px;
-  font-size: 1.1em;
   border-radius: 8px;
-  cursor: pointer;
-  margin-top: 15px;
+  font-size: 1.1em;
   font-weight: bold;
+  cursor: pointer;
   transition: all 0.3s ease;
   box-shadow: 0 0 15px rgba(0,220,130,0.4);
 }
 
-#buy-button:hover {
+.form-button:hover {
   background: #00595f;
   transform: translateY(-3px);
   box-shadow: 0 0 30px rgba(0,220,130,0.8);
 }
 
-#buy-button:active {
+.form-button:active {
   transform: translateY(0);
 }
+
+.booking-message {
+  margin-top: 15px;
+  padding: 12px;
+  border-radius: 6px;
+  text-align: center;
+  font-weight: bold;
+}
+
+.booking-message.success {
+  background: rgba(0, 212, 122, 0.2);
+  color: #00d47a;
+  border: 1px solid #00d47a;
+}
+
+.booking-message.error {
+  background: rgba(255, 80, 80, 0.2);
+  color: #ff5050;
+  border: 1px solid #ff5050;
+}
+
 
 /* Footer */
 footer {

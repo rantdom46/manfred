@@ -34,10 +34,27 @@
         </ul>
       </section>
 
-      <section id="purchase">
-        <h2>Buy the Game</h2>
-        <button id="buy-button">Purchase Now</button>
-        <p class="note">(This is a troll site; no real transactions)</p>
+      <section id="booking">
+        <h2>Book Your Play Session</h2>
+        <form id="booking-form">
+          <div class="form-group">
+            <label for="booking-name">Your Name</label>
+            <input id="booking-name" type="text" name="name" required placeholder="Enter your name" />
+          </div>
+
+          <div class="form-group">
+            <label for="booking-start">Start Date</label>
+            <input id="booking-start" type="date" name="startDate" required />
+          </div>
+
+          <div class="form-group">
+            <label for="booking-end">End Date</label>
+            <input id="booking-end" type="date" name="endDate" required />
+          </div>
+
+          <button type="submit" class="form-button">Book Now</button>
+          <p id="booking-message" class="booking-message" style="display:none;"></p>
+        </form>
       </section>
 
       <section id="contact">

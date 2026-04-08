@@ -1,26 +1,30 @@
 const express = require('express');
 const path = require('path');
-const fs = require('fs');
-const { URL } = require('url');
+const { MongoClient } = require('mongodb');
 
 const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
-const DATA_FILE = path.join(__dirname, 'bookings.json');
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://anthonyzeitz5_db_user:9HimNQ0AXbZTwmMj@flipcluster.by5dlvr.mongodb.net/FlipDB?retryWrites=true&w=majority';
+const DB_NAME = process.env.DB_NAME || 'FlipDB';
+const COLLECTION_NAME = 'bookings';
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || 'https://discord.com/api/webhooks/1483738743192944691/QHRXK6Ue0n2ig77_xro9eFrGaW9nfzSSYCkMtJuWzrEQdZ-LwQNqn7mYku-iLyMydh4U';
 
-function readBookings() {
-  if (!fs.existsSync(DATA_FILE)) return [];
-  try {
-    return JSON.parse(fs.readFileSync(DATA_FILE, 'utf8')) || [];
-  } catch {
-    return [];
-  }
-}
+let db;
+const client = new MongoClient(MONGO_URI);
 
-function writeBookings(bookings) {
-  fs.writeFileSync(DATA_FILE, JSON.stringify(bookings, null, 2), 'utf8');
+async function connectDB() {
+  try {
+    await client.connect();
+    db = client.db(DB_NAME);
+    const collection = db.collection(COLLECTION_NAME);
+    await collection.createIndex({ startDate: 1, endDate: 1 });
+    console.log('Connected to MongoDB');
+  } catch (err) {
+    console.error('MongoDB connection error:', err);
+    process.exit(1);
+  }
 }
 
 function datesOverlap(aStart, aEnd, bStart, bEnd) {
@@ -74,38 +78,52 @@ app.post('/api/book', async (req, res) => {
     return res.status(400).json({ message: 'End date must be equal or after start date.' });
   }
 
-  const bookings = readBookings();
-  const conflict = bookings.find(b => datesOverlap(b.startDate, b.endDate, startDate, endDate));
-  if (conflict) {
-    return res.status(409).json({ message: 'Timeframe conflict with an existing booking.' });
-  }
-
-  const newBooking = {
-    id: Date.now(),
-    name,
-    startDate,
-    endDate,
-    createdAt: new Date().toISOString()
-  };
-
-  bookings.push(newBooking);
-  writeBookings(bookings);
-
   try {
-    await sendDiscordNotification(newBooking);
-  } catch (err) {
-    console.error(err);
-    // still allow booking success, return warning
-    return res.status(201).json({ booking: newBooking, bookings, warning: err.message });
+    const collection = db.collection(COLLECTION_NAME);
+    const bookings = await collection.find({}).toArray();
+    const conflict = bookings.find(b => datesOverlap(b.startDate, b.endDate, startDate, endDate));
+    if (conflict) {
+      return res.status(409).json({ message: 'Timeframe conflict with an existing booking.' });
+    }
+
+    const newBooking = {
+      name,
+      startDate,
+      endDate,
+      createdAt: new Date().toISOString()
+    };
+
+    const result = await collection.insertOne(newBooking);
+    newBooking._id = result.insertedId;
+
+    try {
+      await sendDiscordNotification(newBooking);
+    } catch (err) {
+      console.error('Discord error:', err);
+      return res.status(201).json({ booking: newBooking, bookings, warning: err.message });
+    }
+
+    return res.status(201).json({ booking: newBooking, bookings });
+  } catch (error) {
+    console.error('Booking error:', error);
+    return res.status(500).json({ message: 'Internal server error' });
   }
-
-  return res.status(201).json({ booking: newBooking, bookings });
 });
 
-app.get('/api/bookings', (req, res) => {
-  res.json(readBookings());
+app.get('/api/bookings', async (req, res) => {
+  try {
+    const collection = db.collection(COLLECTION_NAME);
+    const bookings = await collection.find({}).toArray();
+    res.json(bookings);
+  } catch (error) {
+    console.error('Error fetching bookings:', error);
+    res.status(500).json({ message: 'Internal server error' });
+  }
 });
 
-app.listen(3000, () => {
-  console.log('Server running at http://localhost:3000');
+connectDB().then(() => {
+  app.listen(3000, () => {
+    console.log('Server running at http://localhost:3000');
+  });
 });
+
