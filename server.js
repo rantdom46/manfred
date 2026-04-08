@@ -6,7 +6,7 @@ const app = express();
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
-const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://anthonyzeitz5_db_user:9HimNQ0AXbZTwmMj@flipcluster.by5dlvr.mongodb.net/FlipDB?retryWrites=true&w=majority';
+const MONGO_URI = process.env.MONGO_URI || 'mongodb+srv://anthonyzeitz5_db_user:9HimNQ0AXbZTwmMj@flipcluster.by5dlvr.mongodb.net/FlipDB?retryWrites=true&w=majority&ssl=true&authSource=admin';
 const DB_NAME = process.env.DB_NAME || 'FlipDB';
 const COLLECTION_NAME = 'bookings';
 const DISCORD_WEBHOOK_URL = process.env.DISCORD_WEBHOOK_URL || 'https://discord.com/api/webhooks/1483738743192944691/QHRXK6Ue0n2ig77_xro9eFrGaW9nfzSSYCkMtJuWzrEQdZ-LwQNqn7mYku-iLyMydh4U';
