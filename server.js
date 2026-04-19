@@ -89,9 +89,19 @@ app.post('/api/book', async (req, res) => {
   try {
     const collection = db.collection(COLLECTION_NAME);
     const bookings = await collection.find({}).toArray();
-    const conflict = bookings.find(b => datesOverlap(b.startDate, b.endDate, startDate, endDate));
-    if (conflict) {
-      return res.status(409).json({ message: 'Timeframe conflict with an existing booking.' });
+
+    const conflicts = bookings.filter(b =>
+      datesOverlap(b.startDate, b.endDate, startDate, endDate)
+    );
+
+    if (conflicts.length > 0) {
+      const latestEnd = conflicts.reduce((latest, b) => {
+        return new Date(b.endDate) > new Date(latest) ? b.endDate : latest;
+      }, conflicts[0].endDate);
+
+      return res.status(409).json({
+        message: `Timeframe conflict. The game is available again from ${latestEnd}.`
+      });
     }
 
     const newBooking = {
