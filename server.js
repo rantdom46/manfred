@@ -1,8 +1,11 @@
 const express = require('express');
+const cors = require("cors");
 const path = require('path');
 const { MongoClient } = require('mongodb');
 
 const app = express();
+
+app.use(cors());
 app.use(express.json());
 app.use(express.static(path.join(__dirname)));
 
@@ -132,4 +135,3 @@ connectDB().then(() => {
     console.log(`Server running on port ${PORT}`);
   });
 });
-
